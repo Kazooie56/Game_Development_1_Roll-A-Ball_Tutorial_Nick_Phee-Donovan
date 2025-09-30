@@ -20,5 +20,9 @@ public class EnemyMovement : MonoBehaviour
         {
             navMeshAgent.SetDestination(player.position);
         }
+        else
+        {
+            navMeshAgent.isStopped = true;
+        }
     }
 }
