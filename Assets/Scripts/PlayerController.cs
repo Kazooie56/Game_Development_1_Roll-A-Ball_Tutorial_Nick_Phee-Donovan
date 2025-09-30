@@ -77,9 +77,12 @@ public class PlayerController : MonoBehaviour
         {
             // Destroy the current object
             Destroy(gameObject);
+            if (!winTextObject.activeSelf)
+            {
+                winTextObject.gameObject.SetActive(true);
+                winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+            }
             // Update the winText to display "You Lose!"
-            winTextObject.gameObject.SetActive(true);
-            winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
         }
     }
 
