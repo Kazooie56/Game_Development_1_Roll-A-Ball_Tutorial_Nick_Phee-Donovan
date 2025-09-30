@@ -267,12 +267,12 @@ GameObject:
   - component: {fileID: 228886566}
   - component: {fileID: 228886567}
   m_Layer: 5
-  m_Name: Image
+  m_Name: CurrentLevelImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &228886564
 RectTransform:
   m_ObjectHideFlags: 0
@@ -628,7 +628,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a4acada9f4227649ac7a8e7bcd084bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverImage: {fileID: 0}
+  previewImage: {fileID: 228886567}
+  previewTexture: {fileID: 2800000, guid: baf22ca1ca46ffc4c9f732ef0bd331f6, type: 3}
 --- !u!1 &1404918498
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,7 +956,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a4acada9f4227649ac7a8e7bcd084bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverImage: {fileID: 0}
+  previewImage: {fileID: 228886567}
+  previewTexture: {fileID: 2800000, guid: c4702c4b9fcf9fd43a7e26c5bafb2a6b, type: 3}
 --- !u!1 &1706769513
 GameObject:
   m_ObjectHideFlags: 0
