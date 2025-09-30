@@ -53,7 +53,11 @@ public class PlayerController : MonoBehaviour
             winTextObject.SetActive(true);
 
             //Destroy the enemy GameObject
-            Destroy(GameObject.FindGameObjectWithTag("Enemy"));
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject enemy in enemies)
+            {
+                Destroy(enemy);
+            }
         }
     }
 
