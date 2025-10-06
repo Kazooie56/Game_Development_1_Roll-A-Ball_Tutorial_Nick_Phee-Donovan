@@ -131,9 +131,8 @@ GameObject:
   - component: {fileID: 144126005}
   - component: {fileID: 144126004}
   - component: {fileID: 144126003}
-  - component: {fileID: 144126002}
   m_Layer: 5
-  m_Name: BigDonutSelect
+  m_Name: ScoreModeSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,25 +153,11 @@ RectTransform:
   - {fileID: 1505664361}
   m_Father: {fileID: 1482245870}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -25, y: -75}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 160, y: -20}
   m_SizeDelta: {x: 260, y: 30}
-  m_Pivot: {x: 1, y: 0.5}
---- !u!114 &144126002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 144126000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a4acada9f4227649ac7a8e7bcd084bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  previewImage: {fileID: 1705445371}
-  previewTexture: {fileID: 2800000, guid: baf22ca1ca46ffc4c9f732ef0bd331f6, type: 3}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &144126003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,7 +211,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: BigDonut
+          m_StringArgument: ScoreModeLevelSelect
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &144126004
@@ -324,7 +309,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TUTORIAL LEVEL
+  m_text: Story Mode
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -760,9 +745,8 @@ GameObject:
   - component: {fileID: 1194204602}
   - component: {fileID: 1194204601}
   - component: {fileID: 1194204600}
-  - component: {fileID: 1194204599}
   m_Layer: 5
-  m_Name: TutorialLevelSelect
+  m_Name: StoryModeSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -783,25 +767,11 @@ RectTransform:
   - {fileID: 451631583}
   m_Father: {fileID: 1482245870}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -25, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -160, y: -20}
   m_SizeDelta: {x: 260, y: 30}
-  m_Pivot: {x: 1, y: 0.5}
---- !u!114 &1194204599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1194204597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a4acada9f4227649ac7a8e7bcd084bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  previewImage: {fileID: 1705445371}
-  previewTexture: {fileID: 2800000, guid: c4702c4b9fcf9fd43a7e26c5bafb2a6b, type: 3}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1194204600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -855,7 +825,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Minigame
+          m_StringArgument: SpiralMountain
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1194204601
@@ -1058,7 +1028,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BIG DONUT
+  m_text: 'Score Mode
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1230,7 +1202,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1705445370
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1341,7 +1313,7 @@ GameObject:
   - component: {fileID: 1792445928}
   - component: {fileID: 1792445927}
   m_Layer: 5
-  m_Name: ChooseYourLevelText
+  m_Name: ChooseYourModeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1386,7 +1358,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CHOOSE YOUR LEVEL
+  m_text: CHOOSE YOUR MODE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

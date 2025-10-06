@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/TitleScreen.unity
+    guid: e5fb6865c8b8e9f409b2502b54faebc9
+  - enabled: 1
+    path: Assets/Scenes/Story Mode Scenes/SpiralMountain.unity
+    guid: f36e0eac59afd1d45973ad64c733e52e
+  - enabled: 1
     path: Assets/Scenes/ScoreModeLevelSelect.unity
     guid: 01a167b7b93f637459f817bb2cc25c50
   - enabled: 1
