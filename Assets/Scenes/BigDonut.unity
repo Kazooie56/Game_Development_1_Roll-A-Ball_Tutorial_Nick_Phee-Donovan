@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &3067406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4303,7 +4303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &469603332
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21796,7 +21796,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &903945627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21900,14 +21900,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6558df1ba3bd48541bec17c80b3b8451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 947688816}
   player: {fileID: 1851335745}
-  pivot: {fileID: 947688816}
   distance: 8
   height: 3
-  snapAngle: 40
-  snapDuration: 0.5
   followSmooth: 10
-  rotationSmooth: 10
+  snapDuration: 0.5
   wallCheckRadius: 0.5
   collisionMask:
     serializedVersion: 2
@@ -22924,7 +22922,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1770913056
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23097,7 +23095,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1832572592
 BoxCollider:
   m_ObjectHideFlags: 0
