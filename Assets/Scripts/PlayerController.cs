@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     
     // Rigidbody of the player. Don't know why we need that specifically yet.
     private Rigidbody rb;
+    
     private int count;
 
     // Movement along X and Y axes.
@@ -64,11 +65,26 @@ public class PlayerController : MonoBehaviour
     // FixedUpdate is called once per fixed frame-rate frame.
     void FixedUpdate()
     {
-        // Create a 3D movement vector using the X and Y inputs.
-        Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-        
-        // Apply force to the rigidbody to move the player
+        // Get camera forward and right directions and flatten them on the XZ plane
+        Vector3 camForward = Camera.main.transform.forward;
+        camForward.y = 0f;          // remove vertical component
+        camForward.Normalize();     // make it unit length
+
+        Vector3 camRight = Camera.main.transform.right;
+        camRight.y = 0f;
+        camRight.Normalize();
+
+        // Combine input with camera directions
+        Vector3 movement = camForward * movementY + camRight * movementX;
+
+        // Apply force to move the player
         rb.AddForce(movement * speed);
+
+        // Optional: rotate the player to face movement direction
+        if (movement.magnitude > 0.1f)
+        {
+            rb.rotation = Quaternion.Slerp(rb.rotation, Quaternion.LookRotation(movement), 0.2f);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
