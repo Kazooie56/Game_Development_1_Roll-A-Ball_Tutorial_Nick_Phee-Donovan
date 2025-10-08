@@ -22,14 +22,28 @@ public class CameraController : MonoBehaviour
     private float currentYaw = 0f;
     private Vector3 currentVelocity;
 
+
+
     void Update()
     {
+        bool CanSnapYaw(float delta)
+        {
+            // Test the direction we would rotate
+            Vector3 testDir = Quaternion.Euler(0, targetYaw + delta, 0) * Vector3.back;
+            if (Physics.Raycast(target.position, testDir, distance, collisionMask))
+                return false; // blocked by wall
+            return true; // clear
+        }
+
         // Update target pivot position (follow player but ignore rotation)
         target.position = player.position + Vector3.up * 1.5f;
 
         // Handle Q/E snapping input
-        if (Input.GetKeyDown(KeyCode.Q)) StartCoroutine(SnapYaw(-39f));
-        if (Input.GetKeyDown(KeyCode.E)) StartCoroutine(SnapYaw(39f));
+        if (Input.GetKeyDown(KeyCode.Q) && CanSnapYaw(-39f))
+            StartCoroutine(SnapYaw(-39f));
+
+        if (Input.GetKeyDown(KeyCode.E) && CanSnapYaw(39f))
+            StartCoroutine(SnapYaw(39f));
     }
 
     void LateUpdate()
