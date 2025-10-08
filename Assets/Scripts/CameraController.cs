@@ -1,12 +1,13 @@
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class CameraController : MonoBehaviour
 {
-    [Header("Target")]
-    public Transform target; // CameraPivot
-    public Transform player; // The rolling sphere
-    public float distance = 8f;
+    [Header("Target")]          // This gives the Inspector a Header for a customizable section
+    public Transform target;    // CameraPivot
+    public Transform player;    // The rolling sphere
+    public float distance = 8f; 
     public float height = 3f;
 
     [Header("Smoothing")]
@@ -27,14 +28,14 @@ public class CameraController : MonoBehaviour
         target.position = player.position + Vector3.up * 1.5f;
 
         // Handle Q/E snapping input
-        if (Input.GetKeyDown(KeyCode.Q)) StartCoroutine(SnapYaw(-40f));
-        if (Input.GetKeyDown(KeyCode.E)) StartCoroutine(SnapYaw(40f));
+        if (Input.GetKeyDown(KeyCode.Q)) StartCoroutine(SnapYaw(-39f));
+        if (Input.GetKeyDown(KeyCode.E)) StartCoroutine(SnapYaw(39f));
     }
 
     void LateUpdate()
     {
         // Smoothly interpolate yaw angle
-        currentYaw = Mathf.Lerp(currentYaw, targetYaw, Time.deltaTime * (180f / snapDuration));
+        currentYaw = Mathf.Lerp(currentYaw, targetYaw, Time.deltaTime * (180f / snapDuration)); // Yaw is a pilot term for how a plane can turn, a plane rotating left and right is Yaw, pitch is up and down, roll is doing starfox barrel rolls
 
         // Compute desired camera position (pivot around player)
         Vector3 offset = Quaternion.Euler(0, currentYaw, 0) * Vector3.back * distance + Vector3.up * height;
@@ -63,7 +64,16 @@ public class CameraController : MonoBehaviour
 
         if (Physics.SphereCast(targetPos, wallCheckRadius, dir.normalized, out RaycastHit hit, dist, collisionMask))
         {
-            // Slide camera along wall surface instead of zooming in
+            // Determine minimal rotation direction to avoid wall
+            float leftAngle = FindClearAngle(targetPos, -1);
+            float rightAngle = FindClearAngle(targetPos, 1);
+
+            float rotateDir = leftAngle <= rightAngle ? -1f : 1f;
+
+            // Rotate camera gradually toward the clear side
+            targetYaw += rotateDir * Time.deltaTime * 60f; // adjust rotation speed as needed
+
+            // Slide camera along the wall slightly
             Vector3 hitNormal = hit.normal;
             Vector3 slideDir = Vector3.ProjectOnPlane(dir.normalized, hitNormal);
             camPos = hit.point + slideDir * 0.5f;
@@ -71,26 +81,23 @@ public class CameraController : MonoBehaviour
 
         return camPos;
     }
+
+    // Finds how far (in degrees) the camera must rotate in a given direction to clear wall
+    float FindClearAngle(Vector3 origin, float dirSign)
+    {
+        float testAngle = 0f;
+        int maxSteps = 20;
+        float step = 5f; // degrees per test
+
+        for (int i = 0; i < maxSteps; i++)
+        {
+            testAngle += step * dirSign;
+            Vector3 testDir = Quaternion.Euler(0, targetYaw + testAngle, 0) * Vector3.back;
+
+            if (!Physics.Raycast(origin, testDir, distance, collisionMask))
+                return Mathf.Abs(testAngle); // angle needed to clear
+        }
+
+        return 360f; // assume blocked if nothing clears within range
+    }
 }
-
-
-
-
-
-//public class CameraController : MonoBehaviour
-//{
-//    public GameObject player;
-//    private Vector3 offset;
-
-//    // Start is called once before the first execution of Update after the MonoBehaviour is created
-//    void Start()
-//    {
-//        offset = transform.position - player.transform.position;
-//    }
-
-//    // Update is called once per frame
-//    void LateUpdate()
-//    {
-//        transform.position = player.transform.position + offset;
-//    }
-//}
