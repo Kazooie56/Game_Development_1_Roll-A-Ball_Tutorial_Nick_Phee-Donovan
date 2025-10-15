@@ -1,13 +1,16 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
     
     // Rigidbody of the player. Don't know why we need that specifically yet.
     private Rigidbody rb;
-    
+
+    private Dictionary<string, int> collected = new Dictionary<string, int>();
+
     private int count;
 
     // Movement along X and Y axes.
@@ -106,11 +109,13 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("PickUp"))
         {
+            //string itemName = other.gameObject.name;
+
             other.gameObject.SetActive(false);
+
             count++;
 
             SetCountText();
-            
         }
     }
 }

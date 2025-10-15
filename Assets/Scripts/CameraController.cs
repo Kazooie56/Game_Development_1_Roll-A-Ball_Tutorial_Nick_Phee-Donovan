@@ -26,9 +26,8 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        bool CanSnapYaw(float delta)
+        bool CanSnapYaw(float delta) // check if we can rotate the camera and not have it blocked by a wall
         {
-            // Test the direction we would rotate
             Vector3 testDir = Quaternion.Euler(0, targetYaw + delta, 0) * Vector3.back;
             if (Physics.Raycast(target.position, testDir, distance, collisionMask))
                 return false; // blocked by wall

@@ -22,13 +22,3 @@ public class NoteSpinner : MonoBehaviour
     }
 }
 
-
-//public Transform MainCamera;
-//public class MusicNoteRotater : MonoBehaviour
-//{
-//    void Update()
-//    {
-//        transform.Rotate(new Vector3(0, 324, 0) * Time.deltaTime); // banjo Kazooie runs at 20 fps, might be 30 or 60, it has 18 frames in the spinning animation, so just check and see what looks right
-//    }
-//}
-
