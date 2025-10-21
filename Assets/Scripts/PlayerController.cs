@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 0;
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
+    public GameObject RetryButton;
+    public GameObject QuitButton;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -45,7 +47,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Function to update the displayed count of "PickUp" objects collected.
-    void SetCountText()
+    void SetCountText() //handles count, winning scoremode, win text, and deleting enemies on win
     {
         // Update the count text with the current count.
         countText.text = "Count: " + count.ToString();
@@ -62,11 +64,13 @@ public class PlayerController : MonoBehaviour
             {
                 Destroy(enemy);
             }
+            RetryButton.gameObject.SetActive(true);
+            QuitButton.gameObject.SetActive(true);
         }
     }
 
     // FixedUpdate is called once per fixed frame-rate frame.
-    void FixedUpdate()
+    void FixedUpdate()  //Camera, Player movenment
     {
         // Get camera forward and right directions and flatten them on the XZ plane
         Vector3 camForward = Camera.main.transform.forward;
@@ -90,7 +94,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision) //Check for damage, display you lose
     {
         if (collision.gameObject.CompareTag("Enemy") || (collision.gameObject.CompareTag("Lava")))
         {
@@ -100,12 +104,14 @@ public class PlayerController : MonoBehaviour
             {
                 winTextObject.gameObject.SetActive(true);
                 winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+                RetryButton.gameObject.SetActive(true);
+                QuitButton.gameObject.SetActive(true);
             }
             // Update the winText to display "You Lose!"
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) // check if you touched a pickup, update count
     {
         if(other.gameObject.CompareTag("PickUp"))
         {
