@@ -9,8 +9,6 @@ public class PlayerController : MonoBehaviour
     // Rigidbody of the player. Don't know why we need that specifically yet.
     private Rigidbody rb;
 
-    private Dictionary<string, int> collected = new Dictionary<string, int>();
-
     private int count;
 
     // Movement along X and Y axes.
