@@ -26,6 +26,9 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0f)
+            return; // stop updating when paused
+
         bool CanSnapYaw(float delta) // check if we can rotate the camera and not have it blocked by a wall
         {
             Vector3 testDir = Quaternion.Euler(0, targetYaw + delta, 0) * Vector3.back;
