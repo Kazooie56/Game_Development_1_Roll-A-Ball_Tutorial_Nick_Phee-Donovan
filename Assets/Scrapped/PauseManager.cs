@@ -9,9 +9,11 @@ public class PauseManager : MonoBehaviour
     private bool canPause = true;
     private float pauseCooldown = 1f;   // 1 second cooldown
     public GameObject RetryButton;
+    public GameObject ControlsButton;
     public GameObject QuitButton;
-    public GameObject winTextObject;
+    public GameObject winTextObject;    // only used so that you cant pause after you win or lose 
     public GameObject DarkTint;
+    public GameObject ControlsUI;
 
     void Update()
     {
@@ -33,19 +35,40 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         isPaused = true;
-        RetryButton.gameObject.SetActive(true);
-        QuitButton.gameObject.SetActive(true);
-        DarkTint.gameObject.SetActive(true);
+        RetryButton.SetActive(true);
+        ControlsButton.SetActive(true);
+        QuitButton.SetActive(true);
+        DarkTint.SetActive(true);
     }
 
     void ResumeGame()
     {
         Time.timeScale = 1f;
         isPaused = false;
-        RetryButton.gameObject.SetActive(false);
-        QuitButton.gameObject.SetActive(false);
-        DarkTint.gameObject.SetActive(false);
+        RetryButton.SetActive(false);
+        QuitButton.SetActive(false);
+        DarkTint.SetActive(false);
         StartCoroutine(PauseCooldown());
+    }
+
+    public void OnControlsButtonPressed()
+    {
+        RetryButton.SetActive(false);
+        ControlsButton.SetActive(false);
+        QuitButton.SetActive(false);
+
+        ControlsUI.SetActive(true);
+    }
+
+    public void OnBackButtonPressed()
+    {
+        // Show main menu buttons again
+        RetryButton.SetActive(true);
+        ControlsButton.SetActive(true);
+        QuitButton.SetActive(true);
+
+        // Hide controls UI
+        ControlsUI.SetActive(false);
     }
 
     IEnumerator PauseCooldown()

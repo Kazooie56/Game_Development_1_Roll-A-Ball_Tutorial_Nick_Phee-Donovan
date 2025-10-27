@@ -6,10 +6,10 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     
-    // Rigidbody of the player. Don't know why we need that specifically yet.
-    private Rigidbody rb;
+    
+    private Rigidbody rb;                       // Rigidbody of the player. Don't know why we need that specifically yet.
 
-    private int count;
+    private int count;                          // count is for the objects in the score mode
 
     // Movement along X and Y axes.
     private float movementX;
@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     // Speed at which the player moves.
     public float speed = 0;
     public TextMeshProUGUI countText;
+    public GameObject WinLoseRetryButton;
+    public GameObject WinLoseQuitButton;
     public GameObject winTextObject;
     public GameObject RetryButton;
     public GameObject QuitButton;
@@ -47,10 +49,8 @@ public class PlayerController : MonoBehaviour
     // Function to update the displayed count of "PickUp" objects collected.
     void SetCountText() //handles count, winning scoremode, win text, and deleting enemies on win
     {
-        // Update the count text with the current count.
-        countText.text = "Count: " + count.ToString();
+        countText.text = "Count: " + count.ToString();          // Update the count text with the current count.
 
-        // Check if the count has reached or exceeded the win condition.
         if (count >= 12)
         {
             //Display the win text.
@@ -62,8 +62,8 @@ public class PlayerController : MonoBehaviour
             {
                 Destroy(enemy);
             }
-            RetryButton.gameObject.SetActive(true);
-            QuitButton.gameObject.SetActive(true);
+            WinLoseRetryButton.gameObject.SetActive(true);
+            WinLoseQuitButton.gameObject.SetActive(true);
         }
     }
 
@@ -100,10 +100,10 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
             if (!winTextObject.activeSelf)
             {
-                winTextObject.gameObject.SetActive(true);
+                winTextObject.SetActive(true);
                 winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
-                RetryButton.gameObject.SetActive(true);
-                QuitButton.gameObject.SetActive(true);
+                WinLoseRetryButton.SetActive(true);
+                WinLoseQuitButton.SetActive(true);
             }
             // Update the winText to display "You Lose!"
         }

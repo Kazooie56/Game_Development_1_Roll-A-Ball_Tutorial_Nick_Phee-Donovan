@@ -8,36 +8,18 @@ public class GameManager : MonoBehaviour
 
     [Header("UI References")]
     public GameObject RetryButton;
+    public GameObject ControlsButton;
     public GameObject QuitButton;
     public GameObject WinTextObject;
     public GameObject DarkTint;
+    public GameObject ControlsUI;
+    
 
     [Header("Pause Settings")]
     public string[] unpausableScenes;
-    private float pauseCooldown = 0.75f;
 
     private bool isPaused = false;
     private bool canPause = true;
-
-    //private void Start()
-    //{
-    //    RetryButton = GameObject.Find("RetryButton");
-    //    QuitButton = GameObject.Find("QuitButton");
-    //    DarkTint = GameObject.Find("DarkTint");
-    //}
-
-
-    //private void Awake()
-    //{
-    //    if (Instance != null && Instance != this)
-    //    {
-    //        Destroy(gameObject);
-    //        return;
-    //    }
-
-    //    Instance = this;
-    //    DontDestroyOnLoad(gameObject);
-    //}
 
     private void Update()
     {
@@ -72,20 +54,44 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
         SetPauseUI(false);
+
+        ControlsUI.SetActive(false);
+
         StartCoroutine(PauseCooldown());
     }
 
     private void SetPauseUI(bool state)
     {
         if (RetryButton) RetryButton.SetActive(state);
+        if (ControlsButton) ControlsButton.SetActive(state);
         if (QuitButton) QuitButton.SetActive(state);
         if (DarkTint) DarkTint.SetActive(state);
+    }
+
+    public void OnControlsButtonPressed()
+    {
+        RetryButton.SetActive(false);
+        ControlsButton.SetActive(false);
+        QuitButton.SetActive(false);
+
+        ControlsUI.SetActive(true);
+    }
+
+    public void OnBackButtonPressed()
+    {
+        // Show main menu buttons again
+        RetryButton.SetActive(true);
+        ControlsButton.SetActive(true);
+        QuitButton.SetActive(true);
+
+        // Hide controls UI
+        ControlsUI.SetActive(false);
     }
 
     private IEnumerator PauseCooldown()
     {
         canPause = false;
-        yield return new WaitForSecondsRealtime(pauseCooldown);
+        yield return new WaitForSecondsRealtime(0.25f); // this is how long you need to wait before pausing again
         canPause = true;
     }
 
