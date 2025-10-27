@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
         ControlsUI.SetActive(true);
     }
 
-    public void OnBackButtonPressed()
+    public void OnControlsBackButtonPressed()
     {
         // Show main menu buttons again
         RetryButton.SetActive(true);
