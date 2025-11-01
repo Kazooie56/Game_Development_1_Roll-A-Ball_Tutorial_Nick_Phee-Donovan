@@ -7,6 +7,7 @@ TagManager:
   - PickUp
   - Enemy
   - Lava
+  - HoneyComb Piece
   layers:
   - Default
   - TransparentFX

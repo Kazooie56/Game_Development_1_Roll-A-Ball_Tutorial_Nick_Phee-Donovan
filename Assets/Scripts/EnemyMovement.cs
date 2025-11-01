@@ -17,6 +17,7 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         if (player != null)
+        // ADD || player isInvulnerable = true LATER AND MAKE IT WORK
         {
             navMeshAgent.SetDestination(player.position);
         }

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -5,8 +6,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    
-    
+    public int currentHealth;
+    public int maxHealth = 5;
+    public HealthScript healthScript;
+
+    private bool isInvulnerable = false;
+    private float invulnerabilityDuration = 1.0f; // seconds of i-frame time
+    private bool touchingDamageSource = false;
+
     private Rigidbody rb;                       // Rigidbody of the player. Don't know why we need that specifically yet.
 
     private int count;                          // count is for the objects in the score mode
@@ -29,6 +36,10 @@ public class PlayerController : MonoBehaviour
     {
         // Get and store the Rigidbody component attached to the player.
         rb = GetComponent<Rigidbody>();
+
+        currentHealth = maxHealth;
+        healthScript.UpdateHealthBar(currentHealth, maxHealth);
+
         count = 0;
 
         SetCountText();
@@ -53,17 +64,15 @@ public class PlayerController : MonoBehaviour
 
         if (count >= 12)
         {
-            //Display the win text.
             winTextObject.SetActive(true);
 
-            //Destroy the enemy GameObject
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
             foreach (GameObject enemy in enemies)
             {
                 Destroy(enemy);
             }
-            WinLoseRetryButton.gameObject.SetActive(true);
-            WinLoseQuitButton.gameObject.SetActive(true);
+            WinLoseRetryButton.SetActive(true);
+            WinLoseQuitButton.SetActive(true);
         }
     }
 
@@ -92,21 +101,55 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+            touchingDamageSource = false;
+    }
+
+    private void Update()
+    {
+        if (touchingDamageSource)
+            TryTakeDamage();
+    }
+
     private void OnCollisionEnter(Collision collision) //Check for damage, display you lose
     {
-        if (collision.gameObject.CompareTag("Enemy") || (collision.gameObject.CompareTag("Lava")))
+        if (collision.gameObject.CompareTag("Lava"))
         {
-            // Destroy the current object
-            Destroy(gameObject);
-            if (!winTextObject.activeSelf)
-            {
-                winTextObject.SetActive(true);
-                winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
-                WinLoseRetryButton.SetActive(true);
-                WinLoseQuitButton.SetActive(true);
-            }
-            // Update the winText to display "You Lose!"
+            currentHealth = Mathf.Clamp(currentHealth - 16, 0, maxHealth);
+            healthScript.UpdateHealthBar(currentHealth, maxHealth);
+            ShowLoseUI();
         }
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            touchingDamageSource = true;
+            TryTakeDamage();
+        }
+    }
+
+    private void TryTakeDamage()
+    {
+        if (isInvulnerable) return;
+
+        currentHealth = Mathf.Clamp(currentHealth - 1, 0, maxHealth);
+        healthScript.UpdateHealthBar(currentHealth, maxHealth);
+
+        if (currentHealth <= 0)
+        {
+            ShowLoseUI();
+        }
+        else
+        {
+            StartCoroutine(InvulnerabilityFrames());
+        }
+    }
+
+    private IEnumerator InvulnerabilityFrames()
+    {
+        isInvulnerable = true;
+        yield return new WaitForSeconds(invulnerabilityDuration);
+        isInvulnerable = false;
     }
 
     private void OnTriggerEnter(Collider other) // check if you touched a pickup, update count
@@ -121,5 +164,25 @@ public class PlayerController : MonoBehaviour
 
             SetCountText();
         }
+
+        if(other.gameObject.CompareTag("Honeycomb Piece"))
+        {
+            other.gameObject.SetActive(false);
+            currentHealth++;
+            healthScript.UpdateHealthBar(currentHealth, maxHealth);
+        } // unused currently.
+    }
+
+    private void ShowLoseUI()
+    {
+        if (!winTextObject.activeSelf)
+        {
+            winTextObject.SetActive(true);
+            winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+            WinLoseRetryButton.SetActive(true);
+            WinLoseQuitButton.SetActive(true);
+        }
+
+        Destroy(gameObject); // Only destroy player once
     }
 }

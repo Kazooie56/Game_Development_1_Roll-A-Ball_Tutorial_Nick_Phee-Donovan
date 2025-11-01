@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public GameObject WinTextObject;
     public GameObject DarkTint;
     public GameObject ControlsUI;
+    public GameObject HealthBarUI;
+    public GameObject LivesUI;
+    public GameObject PlayerIcon;
     
 
     [Header("Pause Settings")]
@@ -66,6 +69,9 @@ public class GameManager : MonoBehaviour
         if (ControlsButton) ControlsButton.SetActive(state);
         if (QuitButton) QuitButton.SetActive(state);
         if (DarkTint) DarkTint.SetActive(state);
+        if (HealthBarUI) HealthBarUI.SetActive(state);
+        //if (LivesUI) LivesUI.SetActive(state);                //RE-ENABLE ME WHEN LIVES ARE ADDED
+        if (PlayerIcon) PlayerIcon.SetActive(state);
     }
 
     public void OnControlsButtonPressed()
@@ -73,6 +79,9 @@ public class GameManager : MonoBehaviour
         RetryButton.SetActive(false);
         ControlsButton.SetActive(false);
         QuitButton.SetActive(false);
+        HealthBarUI.SetActive(false);
+        //LivesUI.SetActive(false);                             //RE-ENABLE ME WHEN LIVES ARE ADDED
+        PlayerIcon.SetActive(false);
 
         ControlsUI.SetActive(true);
     }
