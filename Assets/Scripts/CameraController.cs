@@ -41,11 +41,11 @@ public class CameraController : MonoBehaviour
         target.position = player.position + Vector3.up * 1.5f;
 
         // Handle Q/E snapping input
-        if (Input.GetKeyDown(KeyCode.Q) && CanSnapYaw(-39f))
-            StartCoroutine(SnapYaw(-39f));
-
-        if (Input.GetKeyDown(KeyCode.E) && CanSnapYaw(39f))
+        if (Input.GetKeyDown(KeyCode.Q) && CanSnapYaw(39f))
             StartCoroutine(SnapYaw(39f));
+
+        if (Input.GetKeyDown(KeyCode.E) && CanSnapYaw(-39f))
+            StartCoroutine(SnapYaw(-39f));
     }
 
     void LateUpdate()
