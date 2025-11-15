@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using Unity.VisualScripting;
 
@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
 
     [Header("Smoothing")]
     public float followSmooth = 10f;
-    public float snapDuration = 0.5f; // how long a 40� turn takes
+    public float snapDuration = 0.5f; // how long a 40° turn takes
 
     [Header("Wall Collision")]
     public float wallCheckRadius = 0.5f;
@@ -26,26 +26,44 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        // stop updating when paused
         if (Time.timeScale == 0f)
-            return; // stop updating when paused
+            return;
 
-        bool CanSnapYaw(float delta) // check if we can rotate the camera and not have it blocked by a wall
+        float MaxAllowedYaw(float desiredDelta)
         {
-            Vector3 testDir = Quaternion.Euler(0, targetYaw + delta, 0) * Vector3.back;
-            if (Physics.Raycast(target.position, testDir, distance, collisionMask))
-                return false; // blocked by wall
-            return true; // clear
+            float step = Mathf.Sign(desiredDelta);  // +1 or -1 depending on Q or E
+            float absDelta = Mathf.Abs(desiredDelta);
+
+            // Test 1 degree at a time until the wall blocks
+            for (float d = 0; d <= absDelta; d += 1f)
+            {
+                float testDelta = d * step;
+                Vector3 testDir = Quaternion.Euler(0, targetYaw + testDelta, 0) * Vector3.back;
+
+                // If a wall blocks this angle, return the angle just BEFORE it
+                if (Physics.Raycast(target.position, testDir, distance, collisionMask))
+                    return (d - 1f) * step;
+            }
+
+            // No wall → full rotation allowed
+            return desiredDelta;
         }
 
         // Update target pivot position (follow player but ignore rotation)
         target.position = player.position + Vector3.up * 1.5f;
 
-        // Handle Q/E snapping input
-        if (Input.GetKeyDown(KeyCode.Q) && CanSnapYaw(39f))
-            StartCoroutine(SnapYaw(39f));
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            float allowed = MaxAllowedYaw(39f);
+            StartCoroutine(SnapYaw(allowed));
+        }
 
-        if (Input.GetKeyDown(KeyCode.E) && CanSnapYaw(-39f))
-            StartCoroutine(SnapYaw(-39f));
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            float allowed = MaxAllowedYaw(-39f);
+            StartCoroutine(SnapYaw(allowed));
+        }
     }
 
     void LateUpdate()
