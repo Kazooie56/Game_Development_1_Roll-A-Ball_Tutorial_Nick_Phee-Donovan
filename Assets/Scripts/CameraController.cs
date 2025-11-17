@@ -79,7 +79,7 @@ public class CameraController : MonoBehaviour
         desiredPos = AdjustForWalls(target.position, desiredPos);
 
         // Smoothly move camera
-        //transform.position = Vector3.Lerp(transform.position, desiredPos, Time.deltaTime * followSmooth);
+        transform.position = Vector3.Lerp(transform.position, desiredPos, Time.deltaTime * followSmooth);
 
         // Always look at player
         transform.LookAt(target.position);
