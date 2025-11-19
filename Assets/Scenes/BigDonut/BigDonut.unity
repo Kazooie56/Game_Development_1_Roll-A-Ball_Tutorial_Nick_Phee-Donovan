@@ -4711,6 +4711,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7922322646968648583, guid: 69cb049b66c182242906c695be3788b2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8072437502030721043, guid: 69cb049b66c182242906c695be3788b2, type: 3}
       propertyPath: emptyHoneycombPieceUI
       value: 
@@ -23596,6 +23600,7 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 5
   healthScript: {fileID: 1229880212}
+  emptyHoneycombScript: {fileID: 0}
   emptyHoneycombPieceCount: 0
   speed: 10
   countText: {fileID: 1641482425}
