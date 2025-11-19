@@ -1328,8 +1328,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1707806978}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
+        m_MethodName: LoadScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1337,7 +1337,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: SpiralMountain
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &1194204601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1827,15 +1827,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d814f2fde160d4b906914b329fa8a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unpausableScenes:
-  - TitleScreen
-  - ScoreModeLevelSelect
-  RetryButton: {fileID: 0}
-  ControlsButton: {fileID: 0}
-  QuitButton: {fileID: 0}
-  winTextObject: {fileID: 0}
-  DarkTint: {fileID: 0}
-  ControlsUI: {fileID: 0}
 --- !u!1 &1792445925
 GameObject:
   m_ObjectHideFlags: 0

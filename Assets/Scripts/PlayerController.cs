@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public int maxHealth = 5;
     public HealthScript healthScript;
 
+    public int emptyHoneycombPieceCount = 0;    // emptyHoneycombPieceCount is for the healthbar in the story mode.
+
     private bool isInvulnerable = false;
     private float invulnerabilityDuration = 1.0f; // seconds of i-frame time
     private bool touchingDamageSource = false;
@@ -39,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
         currentHealth = maxHealth;
         healthScript.UpdateHealthBar(currentHealth, maxHealth);
+
 
         count = 0;
 
@@ -156,8 +159,6 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("PickUp"))
         {
-            //string itemName = other.gameObject.name;
-
             other.gameObject.SetActive(false);
 
             count++;
@@ -165,12 +166,12 @@ public class PlayerController : MonoBehaviour
             SetCountText();
         }
 
-        if(other.gameObject.CompareTag("Honeycomb Piece"))
+        if(other.gameObject.CompareTag("Extra Honeycomb Piece"))
         {
-            other.gameObject.SetActive(false);
-            currentHealth++;
-            healthScript.UpdateHealthBar(currentHealth, maxHealth);
-        } // unused currently.
+            other.gameObject.SetActive(false);                      // disable the object
+            emptyHoneycombPieceCount++;                             // increase the count
+            healthScript.UpdateEmptyHoneycombUI(emptyHoneycombPieceCount);
+        }
     }
 
     private void ShowLoseUI()
