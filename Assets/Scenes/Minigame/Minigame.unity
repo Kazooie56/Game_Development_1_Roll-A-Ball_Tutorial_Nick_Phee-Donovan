@@ -902,6 +902,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7922322646968648583, guid: 69cb049b66c182242906c695be3788b2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072437502030721043, guid: 69cb049b66c182242906c695be3788b2, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 521032274}
     - target: {fileID: 8072437502030721043, guid: 69cb049b66c182242906c695be3788b2, type: 3}
       propertyPath: visibleDuration
       value: 3.5
@@ -937,7 +945,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4304555509231787591, guid: 69cb049b66c182242906c695be3788b2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 171937293}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7922322646968648583, guid: 69cb049b66c182242906c695be3788b2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 351550857}
   m_SourcePrefab: {fileID: 100100000, guid: 69cb049b66c182242906c695be3788b2, type: 3}
 --- !u!4 &333210244 stripped
 Transform:
@@ -949,6 +960,24 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7922322646968648583, guid: 69cb049b66c182242906c695be3788b2, type: 3}
   m_PrefabInstance: {fileID: 303671427}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &351550857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351550855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45b1b4285314b6e458661f3e3f9af7fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 576773695}
+  healthScript: {fileID: 1013409308}
+  emptyHoneycombIconsParent: {fileID: 797407183}
+  emptyHoneycombUI: {fileID: 351550855}
+  uncollectedItemTransparency: 0.5
+  emptyHoneycombVisibleDuration: 4
 --- !u!1001 &357170534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4897,6 +4926,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 817237382513037801, guid: e3dc8c1ccc238b340a10c55a066dd59c, type: 3}
   m_PrefabInstance: {fileID: 5694464805860552754}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &576773695 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7151274054462707577, guid: e3dc8c1ccc238b340a10c55a066dd59c, type: 3}
+  m_PrefabInstance: {fileID: 5694464805860552754}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e94254bb5ae00cc4786a74b73a724075, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &606889347
 GameObject:
   m_ObjectHideFlags: 0
@@ -6202,15 +6242,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321575842}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 216.66669, y: 295.16666, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 216.68849, y: 282.40533, z: 15.162886}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1364392560}
   - {fileID: 333210244}
   - {fileID: 898360915}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1546653308}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1342673620 stripped
 MonoBehaviour:
@@ -6671,6 +6711,8 @@ Transform:
   - {fileID: 1044509448}
   - {fileID: 1739831500}
   - {fileID: 74329268}
+  - {fileID: 1321575843}
+  - {fileID: 1720311151}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1546653309
@@ -6899,8 +6941,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1720311150}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.02181173, y: -12.761336, z: 15.162886}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6916,7 +6958,7 @@ Transform:
   - {fileID: 1803664743}
   - {fileID: 1691521867}
   - {fileID: 1125225407}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1546653308}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1739831496
 GameObject:
@@ -7959,6 +8001,10 @@ PrefabInstance:
       propertyPath: WinLoseRetryButton
       value: 
       objectReference: {fileID: 2106364668}
+    - target: {fileID: 7151274054462707577, guid: e3dc8c1ccc238b340a10c55a066dd59c, type: 3}
+      propertyPath: emptyHoneycombScript
+      value: 
+      objectReference: {fileID: 351550857}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8177,14 +8223,12 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 203844589}
+  - {fileID: 303671427}
   - {fileID: 5694464805860552754}
   - {fileID: 7969881367910523126}
   - {fileID: 1546653308}
-  - {fileID: 1720311151}
-  - {fileID: 303671427}
   - {fileID: 1408769553}
   - {fileID: 6118098145929014065}
-  - {fileID: 1321575843}
   - {fileID: 1487758001}
   - {fileID: 5131430458827538951}
   - {fileID: 8788554093270815790}

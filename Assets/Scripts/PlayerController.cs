@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public int currentHealth;
     public int maxHealth = 5;
     public HealthScript healthScript;
+    public EmptyHoneycombScript emptyHoneycombScript;
 
     public int emptyHoneycombPieceCount = 0;    // emptyHoneycombPieceCount is for the healthbar in the story mode.
 
@@ -170,10 +171,9 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.SetActive(false);                      // disable the object
             emptyHoneycombPieceCount++;                             // increase the count
-            healthScript.UpdateEmptyHoneycombUI(emptyHoneycombPieceCount);
+            emptyHoneycombScript.UpdateEmptyHoneycombUI(emptyHoneycombPieceCount);
         }
     }
-
     private void ShowLoseUI()
     {
         if (!winTextObject.activeSelf)
